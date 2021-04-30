@@ -4,7 +4,11 @@ if [ -e ./result/csprogs.dat -o -e ./result/menu.dat -o -e ./result/progs.dat -o
     read -r -p "The operation will compile, delete the current compiled files from result folder to replace and get new compiled ones. Are you sure you want to continue?  [Y/n] " input
     case $input in
     	[yY][eE][sS]|[yY])
-    rm -f ./result/*.pk3  #deletes any *.pk3 file (in that case, csprogs-*.pk3)
+        if [ -e ./csprogs.dat -o -e ./menu.dat -o -e ./progs.dat -o -e ./csprogs.lno -o -e ./menu.lno -o -e ./progs.lno ]; then
+            rm -f ./*.dat
+            rm -f ./*.lno
+        fi
+        rm -f ./result/*.pk3  #deletes any *.pk3 file (in that case, csprogs-*.pk3)
     ;;
 	[nN][oO]|[nN])
     echo "Exiting..."
